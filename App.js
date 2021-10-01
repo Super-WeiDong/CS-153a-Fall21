@@ -20,7 +20,7 @@ const MyStack = () => {
         },
       }}/>
         <Stack.Screen name="Chat" component={Chat} options={{
-          title: 'My home',
+          title: 'Chat',
           headerStyle: {
             backgroundColor: '#f4511e',
           },
@@ -30,7 +30,7 @@ const MyStack = () => {
           },
         }}/>
         <Stack.Screen name="Input" component={Input} options={{
-          title: 'My home',
+          title: 'Creat',
           headerStyle: {
             backgroundColor: '#f4511e',
           },
@@ -40,7 +40,17 @@ const MyStack = () => {
           },
         }}/>
         <Stack.Screen name="About" component={About} options={{
-          title: 'My home',
+          title: 'About',
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}/>
+        <Stack.Screen name="Fresh" component={Fresh} options={{
+          title: 'Fresh',
           headerStyle: {
             backgroundColor: '#f4511e',
           },
@@ -84,6 +94,15 @@ const createJoinButtonAlert = () =>
   ]
 );
 
+const createPostButtonAlert = () =>
+  Alert.alert(
+    "Bingo!",
+    "Post Successfully",
+  [
+    { text: "OK", onPress: () => console.log("OK Pressed") }
+  ]
+);
+
 const Item = ({name,location,time}) => (
 
   <View style={styles.content}>
@@ -96,7 +115,7 @@ const Item = ({name,location,time}) => (
       <View>
         <Button title={">"} color='grey' />
       </View>
-        <Button title={"+"} color='#f4511e'onPress={createJoinButtonAlert}/>
+        <Button title={"+"} color='#f4511e' onPress={createJoinButtonAlert}/>
     </View>
   </View>
 );
@@ -135,7 +154,7 @@ const Home = ({ navigation }) => {
   );
 };
 
-const About = () =>{
+const About = ({navigation}) =>{
   return (
     <View style={styles.about}>
       <View style={{flex:5,alignItems: 'center',justifyContent: 'center'}}>
@@ -143,7 +162,7 @@ const About = () =>{
               style = {{width:100,height:100,justifyContent: 'center',borderRadius:20,borderColor:'#f4511e',borderWidth:1}}/>
       </View>
       <View style={{flex:1,alignItems: 'center',justifyContent: 'flex-end'}}>
-        <Text style={{fontSize:30,color:'#f4511e',fontWeight:'bold'}}>Teammates</Text>
+        <Text style={{fontSize:30,color:'#f4511e',fontWeight:'bold'}}>Teammate</Text>
         <Text style={{fontSize:15,color:'grey'}}>Version 0.0.1</Text>
       </View>
       <View style={{flex:4,justifyContent: 'flex-start'}}>
@@ -154,7 +173,8 @@ const About = () =>{
       </View>
       <View><Text></Text></View>
       <View style ={{backgroundColor:"white"}}>
-        <Button title={"?  What's Fresh                             >"} color='#f4511e'/>
+        <Button title={"?  What's Fresh                             >"} color='#f4511e'
+        onPress={() =>navigation.navigate('Fresh')}/>
       </View>
       <View><Text></Text></View>
       <View style ={{backgroundColor:"white"}}>
@@ -220,7 +240,7 @@ const Input = () =>{
        <Text></Text>
       </View>
       <View style ={{backgroundColor:"#f4511e"}}>
-        <Button title={"Save & Post"} color='white'/>
+        <Button title={"Post"} color='white' onPress={createPostButtonAlert}/>
       </View>
     </View>
   );
@@ -243,24 +263,44 @@ const ChatBar = ({uri,name,words,time}) =>{
     <View style={{backgroundColor:'white',flexDirection:'row',alignItems: 'center',justifyContent: 'flex-start',padding:15}}>
       <View style={{flex:5}}>
         <Image source={{uri: uri}}
-              style = {{width:60,height:60,justifyContent: 'center'}}/>
+              style = {{width:60,height:60,justifyContent: 'center',borderRadius:20}}/>
       </View>
-      <View style={{flex:10,alignItems: 'flex-start',justifyContent: 'flex-start'}}>
+      <View style={{flex:15,alignItems: 'flex-start',justifyContent: 'flex-start'}}>
         <Text style={{fontSize:20}}>{name}</Text>
-        <Text style={{fontSize:10}}>{words}</Text>
+        <Text style={{fontSize:12}}>{words}</Text>
       </View>
       <View style={{flex:3,alignItems: 'flex-start',justifyContent: 'flex-start'}}>
-        <Text style={{fontSize:10}}>{time}</Text>
+        <Text style={{fontSize:10,color:'grey'}}>{time}</Text>
       </View>
     </View>
   );
 }
 
+const Fresh = () =>{
+  return (
+    <View style={styles.fresh}>
+      <View>
+      <Text></Text><Text></Text><Text></Text>
+      </View>
+      <View >
+        <Image source={require('./logo.jpg')}
+            style = {{width:100,height:100,justifyContent: 'center',borderRadius:20,borderColor:'#f4511e',borderWidth:1}}/>
+      </View>
+      <View>
+       <Text></Text><Text></Text><Text></Text>
+      </View>
+      <View style={styles.fresh}>
+        <Text style={{fontSize:20,color:'#f4511e',fontWeight:'bold'}}>Teammate is an app helps you find your teammates easily
+         when you want to initiate or join an activity! </Text>
+      </View>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     height: 860,
-    width: 400,
+    width: 395,
     flexDirection:'column',
     backgroundColor: 'whitesmoke',
     alignItems: 'center',
@@ -268,14 +308,14 @@ const styles = StyleSheet.create({
   },
   bottom:{
     height: 50,
-    width: 400,
+    width: 395,
     flexDirection:'row',
     alignItems: 'flex-end',
     justifyContent:'flex-start',
   },
   contents:{
     height: 703,
-    width: 400,
+    width: 395,
     flexDirection:'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -283,14 +323,14 @@ const styles = StyleSheet.create({
   about: {
     backgroundColor:'whitesmoke',
     height: 860,
-    width: 400,
+    width: 395,
     flexDirection:'column',
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
   content: {
     height: 100,
-    width: 400,
+    width: 395,
     flexDirection:'row',
     backgroundColor: 'white',
     alignItems: 'center',
@@ -300,7 +340,7 @@ const styles = StyleSheet.create({
   inputpage:{
     backgroundColor: 'whitesmoke',
     height: 860,
-    width: 400,
+    width: 395,
     flexDirection:'column',
     backgroundColor: 'white',
     justifyContent: 'flex-start',
@@ -321,7 +361,16 @@ const styles = StyleSheet.create({
   item:{
     borderColor: "grey",
     borderWidth: 2,
-  }
+  },
+  fresh: {
+    height: 860,
+    width: 395,
+    flexDirection:'column',
+    backgroundColor: 'whitesmoke',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding:30
+  },
 });
 
 export default MyStack;
