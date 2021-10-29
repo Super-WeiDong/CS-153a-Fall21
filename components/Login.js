@@ -31,14 +31,8 @@ const Login = ({navigation}) => {
         }
   };
 
-  const createLoginButtonAlert = () =>
-    Alert.alert(
-      "Sorry",
-      "Username or password is wrong!",
-    [
-      { text: "OK", onPress: () => console.log("OK Pressed")}
-    ]
-  );
+
+
 
   return (
     <View style={styles.login}>
@@ -75,6 +69,13 @@ const Login = ({navigation}) => {
                  navigation.navigate('Me')
                  setLoginstatus("Successful")
                }else{
+                 Alert.alert(
+                   "Sorry",
+                   "Username or password is wrong!",
+                 [
+                   { text: "OK", onPress: () => console.log("OK Pressed")}
+                 ]
+               );
                  setLoginstatus("waiting")
                }
              }}
@@ -82,11 +83,6 @@ const Login = ({navigation}) => {
       </View>
       <Button title="Register" onPress={() =>navigation.navigate('Register')} color='#f4511e'/>
       </View>
-      <Text> info: {info.username.toString()}</Text>
-      <Text> info: {username}</Text>
-      <Text> info: {info.password.toString()}</Text>
-      <Text> info: {password}</Text>
-      <Text> info: {loginstatus}</Text>
     </View>
   )
 }

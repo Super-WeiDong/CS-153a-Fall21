@@ -110,7 +110,6 @@ export default function Register({navigation}) {
               value={nickname}
       />
       {result=="fail"?registerButton:toLoginButton}
-      <Text> info: {JSON.stringify(info)}</Text>
     </View>
   )
 }
