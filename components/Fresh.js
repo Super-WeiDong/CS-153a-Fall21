@@ -21,8 +21,7 @@ export default function Fresh({navigation}) {
          when you want to initiate or join an activity! </Text>
          <Text> </Text>
         <Text> </Text>
-        <Text style={{fontSize:20,color:'#f4511e',fontWeight:'bold'}}>TabNavigation, register page, login page and profile page are
-          added in 1.0.0 Version</Text>
+        <Text style={{fontSize:20,color:'#f4511e',fontWeight:'bold'}}>Cloud Storage, Context are added in 2.0.0 Version</Text>
       </View>
     </View>
   );

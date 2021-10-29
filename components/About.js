@@ -12,7 +12,7 @@ export default function About({navigation}) {
       </View>
       <View style={{flex:1,alignItems: 'center',justifyContent: 'flex-end'}}>
         <Text style={{fontSize:30,color:'#f4511e',fontWeight:'bold'}}>Teammate</Text>
-        <Text style={{fontSize:15,color:'grey'}}>Version 0.0.1</Text>
+        <Text style={{fontSize:15,color:'grey'}}>Version 2.0.0</Text>
       </View>
       <View style={{flex:4,justifyContent: 'flex-start'}}>
       </View>
