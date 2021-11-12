@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ScrollView,StyleSheet, Button,Text, View, Image,TextInput, Alert, FlatList } from 'react-native';
+import { SafeAreaView, ScrollView,StyleSheet, Button,Text, View, Image,TextInput, Alert, FlatList,RefreshControl} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios'
 import ValueProvider,{useValue} from './ValueContext';
 import Activity from './Activity'
+import TwoPartRow from './TwoPartRow'
+import ScreenTemplate from './ScreenTemplate'
+
+
+
+const Header = () => {
+  return (
+  <TwoPartRow
+       right = {<Image source={require('./logo.jpg')}
+               style = {{width:50,height:50,justifyContent: 'center',borderRadius:10,borderColor:'#f4511e',borderWidth:1}}/>}
+       left = {<Text style={{fontSize:24,fontWeight:'bold',color:'white'}}> Home </Text>}
+  />
+)}
 
 const Home = ({ navigation }) => {
   const appKey = '5686291'
@@ -64,11 +77,17 @@ const Home = ({ navigation }) => {
     )
   }
 
+
+
   return (
-    <ValueProvider value={info}>
-      <Activity/>
-      <UserKeyScreen/>
-    </ValueProvider>
+    <ScreenTemplate
+        header={<Header />}
+    >
+      <ValueProvider value={info}>
+        <Activity/>
+        <UserKeyScreen/>
+      </ValueProvider>
+    </ScreenTemplate>
   );
 };
 

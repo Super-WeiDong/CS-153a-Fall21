@@ -2,9 +2,21 @@ import React from 'react';
 import { StyleSheet, Button,Text, View, Image,TextInput, Alert, FlatList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import TwoPartRow from './TwoPartRow'
+import ScreenTemplate from './ScreenTemplate'
 
+const Header = () => {
+  return (
+  <TwoPartRow
+       right = {<View style={{backgroundColor:'f4511e',height: 50,width: 50}}></View>}
+       left = {<Text style={{fontSize:24,fontWeight:'bold',color:'white'}}> About </Text>}
+  />
+)}
 export default function About({navigation}) {
   return (
+    <ScreenTemplate
+        header={<Header />}
+    >
     <View style={styles.about}>
       <View style={{flex:5,alignItems: 'center',justifyContent: 'center'}}>
       <Image source={require('./logo.jpg')}
@@ -12,7 +24,7 @@ export default function About({navigation}) {
       </View>
       <View style={{flex:1,alignItems: 'center',justifyContent: 'flex-end'}}>
         <Text style={{fontSize:30,color:'#f4511e',fontWeight:'bold'}}>Teammate</Text>
-        <Text style={{fontSize:15,color:'grey'}}>Version 2.0.0</Text>
+        <Text style={{fontSize:15,color:'grey'}}>Version 4.0.0</Text>
       </View>
       <View style={{flex:4,justifyContent: 'flex-start'}}>
       </View>
@@ -35,6 +47,7 @@ export default function About({navigation}) {
       </View>
       </View>
     </View>
+    </ScreenTemplate>
     );
   };
 

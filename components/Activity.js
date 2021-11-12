@@ -1,9 +1,13 @@
 import React,{useState,useEffect} from 'react';
-import { SafeAreaView, ScrollView, View, FlatList, StyleSheet, Text, TextInput, Button, StatusBar, Image } from 'react-native';
+import {RefreshControl,SafeAreaView, ScrollView, View, FlatList, StyleSheet, Text, TextInput, Button, StatusBar, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Axios from 'axios'
 
 import {useValue} from './ValueContext';
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 const createJoinButtonAlert = () =>
   Alert.alert(
     "Join Successfully",
@@ -31,6 +35,12 @@ const Item = ({name,location,time,information}) => (
 );
 
 export default function Activity () {
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    getCloudData();
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const {currentValue,setCurrentValue} = useValue();
   const appKey = currentValue.appKey
   const appURL = currentValue.appURL
@@ -90,7 +100,12 @@ export default function Activity () {
 
   return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
+        <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
           <FlatList
             data={data}
             renderItem={renderItem}
@@ -108,15 +123,12 @@ export default function Activity () {
               <Text></Text>
             <View style={{flexDirection:'column'}}>
             <View style ={{backgroundColor:"#f4511e"}}>
-              <Button title="Save" color='white' onPress={() =>{
+              <Button title="Post" color='white' onPress={() =>{
                 const activity = {name,location,time,information}
                 storeCloudData(activity)
               }} />
             </View>
              <Text></Text>
-            <View style ={{backgroundColor:"#f4511e"}}>
-              <Button title="Post" color='white' onPress={() => getCloudData()} />
-            </View>
              <Text></Text>
             <View style ={{backgroundColor:"#f4511e"}}>
               <Button title="clear" color='white' onPress={() => clearCloudData()} />

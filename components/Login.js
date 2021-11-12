@@ -3,6 +3,17 @@ import { StyleSheet, Button,Text, View, Image,TextInput, Alert, FlatList } from 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import TwoPartRow from './TwoPartRow'
+import ScreenTemplate from './ScreenTemplate'
+
+const Header = () => {
+  return (
+  <TwoPartRow
+       right = {<Image source={require('./logo.jpg')}
+               style = {{width:50,height:50,justifyContent: 'center',borderRadius:10,borderColor:'#f4511e',borderWidth:1}}/>}
+       left = {<Text style={{fontSize:24,fontWeight:'bold',color:'white'}}> Login </Text>}
+  />
+)}
 
 const Login = ({navigation}) => {
   const [username, setUsername] = React.useState("");
@@ -35,6 +46,9 @@ const Login = ({navigation}) => {
 
 
   return (
+    <ScreenTemplate
+        header={<Header />}
+    >
     <View style={styles.login}>
       <View style ={{justifyContent: 'flex-start'}}>
       <Text></Text>
@@ -84,6 +98,7 @@ const Login = ({navigation}) => {
       <Button title="Register" onPress={() =>navigation.navigate('Register')} color='#f4511e'/>
       </View>
     </View>
+    </ScreenTemplate>
   )
 }
 

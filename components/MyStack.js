@@ -24,49 +24,11 @@ const Stack = createNativeStackNavigator();
         tabBarInactiveTintColor: 'gray',
       })}
       >
-        <Tab.Screen name="Home" component={Home} options={{
-          title: 'My home',
-          headerStyle: {
-          backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-          fontWeight: 'bold',
-          },
-
-        }}/>
-        <Tab.Screen name="Chat" component={Chat} options={{
-          title: 'Chat',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-        <Tab.Screen name="About" component={About} options={{
-          title: 'About',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-        <Tab.Screen name="Login" component={Login} options={{
-          title: 'Login',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
+        <Tab.Screen name="Home" component={Home} options={{ headerShown: false}}/>
+        <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false}}/>
+        <Tab.Screen name="About" component={About} options={{ headerShown: false}}/>
+        <Tab.Screen name="Login" component={Login} options={{ headerShown: false}}/>
       </Tab.Navigator>
-
     );
   };
  export default function MyStack () {
