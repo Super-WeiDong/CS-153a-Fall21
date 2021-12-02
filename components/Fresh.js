@@ -21,7 +21,7 @@ export default function Fresh({navigation}) {
          when you want to initiate or join an activity! </Text>
          <Text> </Text>
         <Text> </Text>
-        <Text style={{fontSize:20,color:'#f4511e',fontWeight:'bold'}}>ScreenTemplate(which is a Container component) and RefreshControl(which is a component not yet covered in class) and README.md file are added in 4.0.0 Version</Text>
+        <Text style={{fontSize:20,color:'#f4511e',fontWeight:'bold'}}>A server which is deploy to heroku and MongoDB were added based on CPA4. Now my App can interact with server and data will be stored in MongoDB</Text>
       </View>
     </View>
   );

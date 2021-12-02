@@ -3,20 +3,18 @@ import { StyleSheet, Button,Text, View, Image,TextInput, Alert, FlatList } from 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ValueProvider from './ValueContext';
 import About from './About'
 import Fresh from './Fresh'
 import Home from './Home'
-import Input from './Input'
-import Chat from './Chat'
-import Register from './Register'
-import Login from './Login'
-import Me from './Me'
+import Registration from './Registration'
+import Profile from './Profile'
 
 const Tab = createBottomTabNavigator();
 
 const Stack = createNativeStackNavigator();
 
- const TabNav = () =>{
+const TabNav = () =>{
   return (
       <Tab.Navigator showLabel='true'
         screenOptions={({ route }) => ({
@@ -25,49 +23,36 @@ const Stack = createNativeStackNavigator();
       })}
       >
         <Tab.Screen name="Home" component={Home} options={{ headerShown: false}}/>
-        <Tab.Screen name="Chat" component={Chat} options={{ headerShown: false}}/>
         <Tab.Screen name="About" component={About} options={{ headerShown: false}}/>
-        <Tab.Screen name="Login" component={Login} options={{ headerShown: false}}/>
+        <Tab.Screen name="Registration" component={Registration} options={{ headerShown: false}}/>
+        <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false}}/>
       </Tab.Navigator>
     );
   };
  export default function MyStack () {
+  const data =
+     {name:"",
+      email:"",
+      appURL: 'https://salty-spire-31298.herokuapp.com',
+      secret: "",
+    }
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Tab" component={TabNav} options={{ headerShown: false}} />
-        <Stack.Screen name="Fresh" component={Fresh} options={{
-          title: 'Fresh',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-        <Stack.Screen name="Register" component={Register} options={{
-          title: 'Register',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-
-        <Stack.Screen name="Me" component={Me} options={{
-          title: 'Me',
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ValueProvider value={data}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Tab" component={TabNav} options={{ headerShown: false}} />
+          <Stack.Screen name="Fresh" component={Fresh} options={{
+            title: 'Fresh',
+            headerStyle: {
+              backgroundColor: '#f4511e',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ValueProvider>
   );
 };
