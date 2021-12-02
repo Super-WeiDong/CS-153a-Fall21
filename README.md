@@ -1,4 +1,4 @@
-## CPA_4_Weidong_project
+## CPA_5_Weidong_project
 - Name of the app
 Teammate
 
@@ -17,4 +17,4 @@ when you want to initiate or join an activity!
   - The packages I used include：SafeAreaView,ScrollView,StyleSheet,Button,Text
     View,Image,TextInput,Alert,FlatList,useState,useEffect,NavigationContainer
     ValueProvider,createNativeStackNavigator,createBottomTabNavigator
-    Axios,useValue,AsyncStorage,ScreenTemplate
+    Axios,useValue,AsyncStorage,ScreenTemplate,MongoDB,server,Heroku
