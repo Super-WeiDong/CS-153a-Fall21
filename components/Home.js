@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import {Image,SafeAreaView, View,Text,TextInput,
+import {RefreshControl,Image,SafeAreaView, View,Text,TextInput,
         Button,TouchableOpacity,
-        FlatList,StyleSheet, ScrollView} from 'react-native'
+        FlatList,StyleSheet, ScrollView,Alert} from 'react-native'
 import Axios from 'axios'
 import TwoPartRow from './TwoPartRow'
 import ScreenTemplate from './ScreenTemplate'
 import ValueProvider,{useValue} from './ValueContext';
-
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 const Header = () => {
   return (
   <TwoPartRow
@@ -16,9 +18,21 @@ const Header = () => {
 )}
 
 const flagPost = (item) => {return 0}
-
+const createJoinButtonAlert = () =>
+  Alert.alert(
+    "Join Successfully",
+    "Enjoy your activity!",
+  [
+    { text: "OK", onPress: () => console.log("OK Pressed") }
+  ]
+);
 
 const Home = () => {
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const {currentValue} = useValue();
   const [title,setTitle] = useState("");
   const [text,setText] = useState("");
@@ -90,7 +104,7 @@ const Home = () => {
         <Button
           color='#f4511e'
           title="Join"
-          onPress={() => flagPost(item)}
+          onPress={createJoinButtonAlert}
         />
       </View>
     )
@@ -102,7 +116,12 @@ const Home = () => {
         header={<Header />}
     >
     <SafeAreaView style={{flex:1}}>
-      <ScrollView style={{flex:1}}>
+    <ScrollView refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />
+    }>
         <View style={styles.input}>
           <Text style={{marginRight:5,fontSize:20, color:'#f4511e',fontWeight:'bold'}}>Activity Type</Text>
           <Text style={{marginRight:5,fontSize:15, color:'#f4511e'}}>{""+posts.length} types of activities in teammate</Text>
