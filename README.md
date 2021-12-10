@@ -16,5 +16,5 @@ when you want to initiate or join an activity!
   - I use JavaScript and ReactNative in this project
   - The packages I used include：SafeAreaView,ScrollView,StyleSheet,Button,Text
     View,Image,TextInput,Alert,FlatList,useState,useEffect,NavigationContainer
-    ValueProvider,createNativeStackNavigator,createBottomTabNavigator
+    ValueProvider,createNativeStackNavigator,createBottomTabNavigator,RefreshControl
     Axios,useValue,AsyncStorage,ScreenTemplate,MongoDB,server,Heroku
